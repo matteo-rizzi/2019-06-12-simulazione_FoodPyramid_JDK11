@@ -1,33 +1,25 @@
 package it.polito.tdp.food.model;
 
-public class Condiment {
-	private Integer condiment_id;
-	private Integer food_code;
+public class Condiment implements Comparable<Condiment>{
+	private Integer condiment_code;
 	private String display_name;
 	private String condiment_portion_size;
 	private Double condiment_calories;
 	
-	public Condiment(Integer condiment_id, Integer food_code, String display_name, String condiment_portion_size,
+	public Condiment(Integer condiment_code, String display_name, String condiment_portion_size,
 			Double condiment_calories) {
 		super();
-		this.condiment_id = condiment_id;
-		this.food_code = food_code;
+		this.condiment_code = condiment_code;
 		this.display_name = display_name;
 		this.condiment_portion_size = condiment_portion_size;
 		this.condiment_calories = condiment_calories;
 	}
 	
-	public Integer getCondiment_id() {
-		return condiment_id;
+	public Integer getCondiment_code() {
+		return condiment_code;
 	}
-	public void setCondiment_id(Integer condiment_id) {
-		this.condiment_id = condiment_id;
-	}
-	public Integer getFood_code() {
-		return food_code;
-	}
-	public void setFood_code(Integer food_code) {
-		this.food_code = food_code;
+	public void setCondiment_id(Integer condiment_code) {
+		this.condiment_code = condiment_code;
 	}
 	public String getDisplay_name() {
 		return display_name;
@@ -50,15 +42,14 @@ public class Condiment {
 
 	@Override
 	public String toString() {
-		return condiment_id + " - "+ display_name + " ("
-				+ condiment_calories + " cal)";
+		return condiment_code + " - "+ display_name;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((condiment_id == null) ? 0 : condiment_id.hashCode());
+		result = prime * result + ((condiment_code == null) ? 0 : condiment_code.hashCode());
 		return result;
 	}
 
@@ -71,12 +62,17 @@ public class Condiment {
 		if (getClass() != obj.getClass())
 			return false;
 		Condiment other = (Condiment) obj;
-		if (condiment_id == null) {
-			if (other.condiment_id != null)
+		if (condiment_code == null) {
+			if (other.condiment_code != null)
 				return false;
-		} else if (!condiment_id.equals(other.condiment_id))
+		} else if (!condiment_code.equals(other.condiment_code))
 			return false;
 		return true;
+	}
+
+	@Override
+	public int compareTo(Condiment other) {
+		return this.display_name.compareTo(other.getDisplay_name());
 	}
 	
 	
